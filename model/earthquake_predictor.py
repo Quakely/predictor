@@ -82,9 +82,9 @@ class EarthquakePredictor:
         new_data_array = np.array(earthquake_data)
 
         print(new_data_array)
-        # self.append_to_database(live_set)
+        self.append_to_database(live_set)
 
-        loaded_model = load('/home/elie/backends/predictor/random_forest_model.joblib')
+        loaded_model = load('random_forest_model.joblib')
         earthquake_data = []
 
         for i in range(min(7, len(days))):
