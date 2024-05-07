@@ -27,7 +27,7 @@ class EarthquakePredictor:
     warnings.simplefilter(action='ignore', category=FutureWarning)
 
     def append_to_database(self, predictions):
-        engine = create_engine('sqlite:///Earthquakedata_predict.db')
+        engine = create_engine('sqlite:////home/elie/backends/predictor/Earthquakedata_predict.db')
         with engine.connect() as connection:
             column_order = ['date', 'place', 'latitude', 'longitude', 'nst', 'depth', 'depth_ewma_15', 'depth_ewma_7',
                             'mag_ewma_22', 'mag_ewma_15', 'mag_ewma_7', 'tremors_count_7d', 'energy', 'total_energy_7d',
@@ -37,9 +37,9 @@ class EarthquakePredictor:
                                              method='multi', chunksize=1000)
 
     def predict(self):
-        engine = create_engine('sqlite:///Earthquakedata.db')
+        engine = create_engine('sqlite:////home/elie/backends/predictor/Earthquakedata.db')
         df_features = pd.read_sql_table('Earthquake_features', con=engine)
-        engine = create_engine('sqlite:///Earthquakedata_predict.db')
+        engine = create_engine('sqlite:////home/elie/backends/predictor/Earthquakedata_predict.db')
         df_predict = pd.read_sql_table('Earthquake_predict', con=engine)
 
         features = [f for f in list(df_features) if f not in ['date', 'lon_box_mean',
