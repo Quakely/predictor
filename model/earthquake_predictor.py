@@ -82,9 +82,11 @@ class EarthquakePredictor:
         new_data_array = np.array(earthquake_data)
 
         print(new_data_array)
+        print(live_set);
         self.append_to_database(live_set)
 
         loaded_model = load('random_forest_model.joblib')
+        print(loaded_model)
         earthquake_data = []
 
         for i in range(min(7, len(days))):
